@@ -3,432 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f7f9;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header styles */
-        header {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: #34495e;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        nav li {
-            margin: 0 15px;
-        }
-        
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: #3498db;
-        }
-        
-        /* Section styles */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 2.5rem;
-            color: #2c3e50;
-        }
-        
-        /* About section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        
-        .about-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-        
-        .about-text p {
-            margin-bottom: 15px;
-        }
-        
-        /* Skills section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .skill-card {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-        
-        /* Projects section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-image {
-            height: 200px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-        }
-        
-        .project-info {
-            padding: 20px;
-        }
-        
-        .project-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .project-info p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        
-        /* Contact section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .contact-info {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .contact-icon {
-            margin-right: 15px;
-            color: #3498db;
-            font-size: 1.2rem;
-        }
-        
-        .contact-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        .form-group textarea {
-            height: 150px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .social-links {
-            margin-top: 20px;
-        }
-        
-        .social-link {
-            display: inline-block;
-            margin: 0 10px;
-            color: #fff;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-link:hover {
-            color: #3498db;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            header h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+    <title>Sanjeev Panta | PhD Researcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Academic portfolio of Sanjeev Panta, PhD Researcher in Computer Science at University of Louisiana at Lafayette">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>Your Name</h1>
-            <p>Web Developer | Designer | Creator</p>
+            <div class="header-content">
+                <div class="profile-image">
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+                <div class="header-text">
+                    <h1>Sanjeev Panta</h1>
+                    <p>PhD Researcher in Computer Science</p>
+                    <p class="university">University of Louisiana at Lafayette</p>
+                </div>
+            </div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
+    <section id="about" class="section">
         <div class="container">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2>About Me</h2>
             <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/400/400" alt="Profile Photo">
-                </div>
                 <div class="about-text">
-                    <h3>Hello, I'm Your Name</h3>
-                    <p>Welcome to my portfolio! I'm a passionate web developer with expertise in HTML, CSS, JavaScript, and more. I create beautiful, functional websites that deliver exceptional user experiences.</p>
-                    <p>With X years of experience in the industry, I've worked on a variety of projects ranging from small business websites to complex web applications. I'm constantly learning and exploring new technologies to stay at the cutting edge of web development.</p>
-                    <p>When I'm not coding, you can find me [Your Hobbies/Interests].</p>
+                    <p>I am a PhD candidate in Computer Science at the University of Louisiana at Lafayette, working under the guidance of Dr. Li Chen. My research focuses on Deep Learning, Time Series Analysis, Multi-modality, Computer Vision, and Federated Learning.</p>
+                    <p>With expertise in developing models for hydrological and rainfall predictions, I am passionate about applying machine learning techniques to solve real-world problems, particularly in environmental monitoring and forecasting.</p>
+                    <p>I am actively engaged in mentoring undergraduate and master's students in research, and I have professional experience as a software engineer in the industry.</p>
+                </div>
+                <div class="about-details">
+                    <div class="detail">
+                        <h3>Research Interests</h3>
+                        <ul>
+                            <li>Deep Learning</li>
+                            <li>Time Series Analysis</li>
+                            <li>Multi-modal Learning</li>
+                            <li>Computer Vision</li>
+                            <li>Federated Learning</li>
+                        </ul>
+                    </div>
+                    <div class="detail">
+                        <h3>Education</h3>
+                        <ul>
+                            <li><strong>PhD in Computer Science</strong><br>University of Louisiana at Lafayette<br>Aug 2022 – May/Dec 2026 (expected)</li>
+                            <li><strong>Bachelor in Computer Engineering</strong><br>Tribhuwan University<br>Dec 2015 – Sep 2019</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: #edf2f7;">
+    <section id="research" class="section alternate">
         <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <div class="skill-icon">HTML</div>
-                    <h3>HTML5</h3>
-                    <p>Creating semantic and accessible markup for modern websites.</p>
+            <h2>Research</h2>
+            <div class="research-areas">
+                <div class="research-item">
+                    <div class="research-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Deep Learning for Environmental Monitoring</h3>
+                    <p>Developing advanced deep learning models for environmental monitoring, focusing on hydrological and rainfall predictions for Louisiana, USA.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">CSS</div>
-                    <h3>CSS3</h3>
-                    <p>Styling websites with modern CSS techniques and animations.</p>
+                <div class="research-item">
+                    <div class="research-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Time Series Forecasting</h3>
+                    <p>Creating novel time series forecasting approaches, including the Pseudoformer: a Pseudo AutoCorrelation-Attention Mechanism for enhanced prediction accuracy.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">JS</div>
-                    <h3>JavaScript</h3>
-                    <p>Building interactive and dynamic web experiences.</p>
+                <div class="research-item">
+                    <div class="research-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Federated Learning</h3>
+                    <p>Exploring fair and efficient federated learning approaches through projects like FedFair3 and SEAFL to enable collaborative model training while preserving data privacy.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">RWD</div>
-                    <h3>Responsive Design</h3>
-                    <p>Creating websites that work beautifully on all devices.</p>
+                <div class="research-item">
+                    <div class="research-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Computer Vision</h3>
+                    <p>Applying computer vision techniques to environmental monitoring and medical imaging problems, including radar nowcasting and skin cancer classification.</p>
                 </div>
-                <!-- Add more skills as needed -->
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
+    <section id="publications" class="section">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
+            <h2>Publications</h2>
+            <div class="publications-list">
+                <div class="publication-item">
+                    <h3>FedFair3: Unlocking Threefold Fairness in Federated Learning</h3>
+                    <p class="authors">Simin Javaherian, Sanjeev Panta, Shelby Williams, Md Sirajul Islam, Li Chen</p>
+                    <p class="venue">ICC'24</p>
+                    <div class="publication-links">
+                        <a href="#" class="button">Paper</a>
+                        <a href="#" class="button">Code</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>SEAFL: Staleness-aware Semi-Asynchronous Federated Learning with Adaptive Weight Aggregation</h3>
+                    <p class="authors">Md Sirajul Islam, Sanjeev Panta, Xu Yuan, Fei Xu, Li Chen, Nian-Feng Tzeng</p>
+                    <p class="venue">IPDPS'25</p>
+                    <div class="publication-links">
+                        <a href="#" class="button">Paper</a>
+                        <a href="#" class="button">Code</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>Skin Cancer Images Classification using Transfer Learning Techniques</h3>
+                    <p class="authors">Md Sirajul Islam, Sanjeev Panta</p>
+                    <p class="venue">arXiv preprint 2024</p>
+                    <div class="publication-links">
+                        <a href="#" class="button">Paper</a>
+                        <a href="#" class="button">Code</a>
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <h3>Pseudoformer: Pseudo AutoCorrelation-Attention Mechanism for Time Series Forecasting</h3>
+                    <p class="authors">Sanjeev Panta, Jatin Patel, Md Sirajul Islam, Simin Javaherian, Xu Yuan, Li Chen, Nian-Feng Tzeng</p>
+                    <p class="venue">Under Submission</p>
+                </div>
+                <div class="publication-item">
+                    <h3>A Multi-Modal Model for Rainfall Nowcasting</h3>
+                    <p class="authors">Sanjeev Panta, Li Chen</p>
+                    <p class="venue">Under Submission</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section alternate">
+        <div class="container">
+            <h2>Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">Project Image Placeholder</div>
-                    <div class="project-info">
-                        <h3>Project Name</h3>
-                        <p>Description of the project. Explain what technologies you used and what problems you solved.</p>
-                        <a href="#" class="btn">View Project</a>
+                    <div class="project-header">
+                        <i class="fas fa-water"></i>
+                        <h3>Battle of the Bayou</h3>
+                    </div>
+                    <p>An educational environmental game focused on the preservation of Louisiana's wetlands. Inspired by CWPPRA, players control invasive nutria rats and restore native vegetation, learning about wetlands preservation and coastal stewardship.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Game Development</span>
+                        <span class="tech-tag">Education</span>
+                        <span class="tech-tag">Environmental</span>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">Project Image Placeholder</div>
-                    <div class="project-info">
-                        <h3>Project Name</h3>
-                        <p>Description of the project. Explain what technologies you used and what problems you solved.</p>
-                        <a href="#" class="btn">View Project</a>
+                    <div class="project-header">
+                        <i class="fas fa-cloud-rain"></i>
+                        <h3>Flood Prediction</h3>
+                    </div>
+                    <p>Forecasting the stream gage heights of the Comite River in Louisiana using State-of-the-Art Time Series Forecasting models, including Transformer based models.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Time Series</span>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">Project Image Placeholder</div>
-                    <div class="project-info">
-                        <h3>Project Name</h3>
-                        <p>Description of the project. Explain what technologies you used and what problems you solved.</p>
-                        <a href="#" class="btn">View Project</a>
+                    <div class="project-header">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Radar Nowcasting</h3>
+                    </div>
+                    <p>Generating future Radar Images for Precipitation using State-of-the-Art models, including Diffusion based models.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Computer Vision</span>
                     </div>
                 </div>
-                <!-- Add more projects as needed -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-music"></i>
+                        <h3>Music Transcription</h3>
+                    </div>
+                    <p>Generating written music from audio files using deep learning.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Keras</span>
+                        <span class="tech-tag">Music21</span>
+                        <span class="tech-tag">Audio Processing</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-microphone"></i>
+                        <h3>Seeker: Music Recognition</h3>
+                    </div>
+                    <p>Music Recognition application to identify recently heard and unrecognized songs.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-car"></i>
+                        <h3>Sawari Sewa</h3>
+                    </div>
+                    <p>Android application for Ride Sharing Services including both two and four wheelers.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Google Maps API</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" style="background-color: #edf2f7;">
+    <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <p>Aug 2022 – Present</p>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Graduate Research Assistant</h3>
+                        <p class="organization">University of Louisiana at Lafayette</p>
+                        <ul>
+                            <li>National Science Foundation funded research, focused on Deep Learning, Times Series, Multi-modality, Computer Vision, Federated Learning</li>
+                            <li>Optimizing and developing Models for Hydrological and Rainfall Predictions for Louisiana, USA</li>
+                            <li>Mentoring Undergrad and Master's Students in Research</li>
+                        </ul>
+                        <div class="skills-used">
+                            <span>Python</span>
+                            <span>PyTorch</span>
+                            <span>TensorFlow</span>
+                            <span>Pandas</span>
+                            <span>Matplotlib</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <p>Aug 2022 – May 2023</p>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Graduate Teaching Assistant (Java)</h3>
+                        <p class="organization">University of Louisiana at Lafayette</p>
+                        <ul>
+                            <li>Grading Projects, Assignments, Test papers on Advanced Data Structure and Software Engineering CMPS 261</li>
+                            <li>Guiding the students in their assignments</li>
+                            <li>Proctoring the exams</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <p>Feb 2021 – Aug 2022</p>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Software Engineer</h3>
+                        <p class="organization">Cotiviti Nepal Pvt. Ltd.</p>
+                        <ul>
+                            <li>Developed robust backend systems using Spring Boot and Oracle database</li>
+                            <li>Designed and implemented frontend solutions using Angular</li>
+                            <li>Led Jira Administration, managing workflows and automating ticketing processes</li>
+                        </ul>
+                        <div class="skills-used">
+                            <span>Spring Boot</span>
+                            <span>Angular</span>
+                            <span>Oracle</span>
+                            <span>Jira</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <p>Nov 2019 – Jan 2021</p>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Full Stack Java Developer</h3>
+                        <p class="organization">FOCUSONE Payment Solution</p>
+                        <ul>
+                            <li>Built and maintained backend services using Java and Sparkjava using JDBC and MySQL</li>
+                            <li>Developed database schemas and performed queries on MySQL</li>
+                            <li>Created frontend applications using Vue.js</li>
+                        </ul>
+                        <div class="skills-used">
+                            <span>Java</span>
+                            <span>SparkJava</span>
+                            <span>MySQL</span>
+                            <span>Vue.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teaching" class="section alternate">
+        <div class="container">
+            <h2>Teaching & Mentoring</h2>
+            <div class="teaching-container">
+                <div class="teaching-section">
+                    <h3>Teaching Assistant</h3>
+                    <div class="teaching-item">
+                        <p class="teaching-course">CMPS 261: Advanced Data Structures and Software Engineering</p>
+                        <p class="teaching-period">Fall 2022, Spring 2023</p>
+                    </div>
+                </div>
+                <div class="teaching-section">
+                    <h3>Mentoring</h3>
+                    <div class="mentoring-grid">
+                        <div class="mentoring-item">
+                            <p class="student-name">Clinton Akalazu</p>
+                            <p class="mentoring-period">Spring 2023 - Summer 2023</p>
+                            <p class="mentoring-topic">Time Series Forecasting using Machine Learning</p>
+                        </div>
+                        <div class="mentoring-item">
+                            <p class="student-name">Jatin Patel</p>
+                            <p class="mentoring-period">Fall 2023 - Spring 2024</p>
+                            <p class="mentoring-topic">Time Series Forecasting using Machine Learning</p>
+                        </div>
+                        <div class="mentoring-item">
+                            <p class="student-name">Leistat J Connor</p>
+                            <p class="mentoring-period">Summer 2025</p>
+                            <p class="mentoring-topic">Time Series Forecasting in Federated Setting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="teaching-section">
+                    <h3>Professional Service</h3>
+                    <ul class="service-list">
+                        <li>Reviewer: Neural Information Processing Systems (NeurIPS) Workshop LXAI 2025</li>
+                        <li>Ethics Reviewer: Neural Information Processing Systems (NeurIPS) 2025</li>
+                        <li>Reviewer: The 2nd International Conference on Electrical and Computer Engineering Researches (ICECER) 2025</li>
+                        <li>Reviewer: The International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME) 2025</li>
+                        <li>TPC Member/Reviewer: IEEE International System-on-Chip Conference (SOCC) 2025</li>
+                        <li>PC Member/Reviewer: AAAI/ACM Conference on AI, Ethics, and Society (AIES) 2025</li>
+                        <li>Subreviewer: International Conference on Algorithms and Architectures for Parallel Processing (ICA3PP) 2023</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="section">
+        <div class="container">
+            <h2>Honors & Awards</h2>
+            <div class="awards-grid">
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>ULL SGA International Friendship Non-Endowed Scholarship</h3>
+                        <p class="award-year">2025-26</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>Science Day Appreciation for Participation</h3>
+                        <p class="award-year">2023, 2024</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>Academic Excellence Award</h3>
+                        <p class="award-year">Spring 2023</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>Full Assistantship throughout Graduate Studies</h3>
+                        <p class="award-year">2022-Present</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>Best Student Award</h3>
+                        <p class="award-year">Undergraduate Second Semester</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="award-content">
+                        <h3>Full Scholarship throughout Undergraduate Studies</h3>
+                        <p class="award-year">2015-2019</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section alternate">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">Groovy</span>
+                        <span class="skill-tag">Ruby</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Sparkjava</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Vue</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Oracle APEX</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Developer Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Intellij</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Swagger</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & Deployment</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">PythonAnywhere</span>
+                        <span class="skill-tag">Heroku</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Me</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-detail">
-                        <span class="contact-icon">📧</span>
-                        <span>your.email@example.com</span>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p><a href="mailto:sanjeev.cp1997@gmail.com">sanjeev.cp1997@gmail.com</a></p>
+                        </div>
                     </div>
-                    <div class="contact-detail">
-                        <span class="contact-icon">📱</span>
-                        <span>+1 (123) 456-7890</span>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <p>Lafayette, LA 70501</p>
+                        </div>
                     </div>
-                    <div class="contact-detail">
-                        <span class="contact-icon">📍</span>
-                        <span>Your Location</span>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/sanjeevchitrakarpanta/" target="_blank">sanjeevchitrakarpanta</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Google Scholar</h3>
+                            <p><a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">Google Scholar Profile</a></p>
+                        </div>
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h3>Send Me a Message</h3>
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -438,26 +552,38 @@
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Your Name. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#" class="social-link">LinkedIn</a>
-                <a href="#" class="social-link">GitHub</a>
-                <a href="#" class="social-link">Twitter</a>
+            <div class="footer-content">
+                <p>&copy; 2025 Sanjeev Panta. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <button id="scrollToTop" class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>
