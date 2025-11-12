@@ -174,4 +174,134 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+
+    // Animated Avatar Character - MOVED INSIDE DOMContentLoaded
+    const avatar = document.getElementById('animated-avatar');
+    const navLinks2 = document.querySelectorAll('nav a');  // Renamed to avoid conflict
+    let currentSection = '';
+    let isWaving = false;
+    let isWalking = false;
+    let avatarTimeout;
+
+    // Initial waving
+    avatar.classList.add('waving');
+    isWaving = true;
+
+    // Function to update avatar position based on current section
+    function updateAvatarPosition() {
+        const currentSectionElement = document.querySelector(`#${currentSection}`);
+        
+        if (!currentSectionElement) return;
+        
+        // Stop waving when moving
+        if (isWaving) {
+            avatar.classList.remove('waving');
+            isWaving = false;
+        }
+        
+        // Start walking animation
+        avatar.classList.add('walking');
+        isWalking = true;
+        
+        // Calculate section position - FIXED CALCULATION
+        const rect = currentSectionElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const sectionCenter = window.scrollY + rect.top + (rect.height / 2);
+        const avatarBottom = Math.max(30, viewportHeight - sectionCenter + 100);
+        
+        // Animate avatar to section
+        avatar.style.transition = 'all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        avatar.style.transform = 'scale(1)';
+        avatar.style.bottom = `${avatarBottom}px`;
+        
+        // Stop walking animation and start waving after reaching the section
+        clearTimeout(avatarTimeout);
+        avatarTimeout = setTimeout(() => {
+            avatar.classList.remove('walking');
+            isWalking = false;
+            
+            // Jump when reaching the destination
+            avatar.classList.add('jumping');
+            
+            setTimeout(() => {
+                avatar.classList.remove('jumping');
+                
+                // Start waving after a delay
+                setTimeout(() => {
+                    avatar.classList.add('waving');
+                    isWaving = true;
+                }, 500);
+            }, 500);
+        }, 1000);
+    }
+
+    // Monitor scroll to update current section and avatar position
+    window.addEventListener('scroll', function() {
+        let newCurrentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= sectionTop - 200) {
+                newCurrentSection = section.getAttribute('id');
+            }
+        });
+        
+        if (newCurrentSection !== currentSection) {
+            currentSection = newCurrentSection;
+            updateAvatarPosition();
+        }
+    });
+
+    // Update avatar position when clicking on nav links
+    navLinks2.forEach(link => {
+        link.addEventListener('click', function() {
+            const targetId = this.getAttribute('href').substring(1);
+            currentSection = targetId;
+            
+            // Short delay to allow scrolling to start
+            setTimeout(() => {
+                updateAvatarPosition();
+            }, 100);
+        });
+    });
+
+    // Add click interaction to the avatar
+    avatar.addEventListener('click', function() {
+        if (!isWaving && !isWalking) {
+            // Jump when clicked
+            avatar.classList.add('jumping');
+            
+            setTimeout(() => {
+                avatar.classList.remove('jumping');
+                
+                // Wave after jumping
+                avatar.classList.add('waving');
+                isWaving = true;
+                
+                // Stop waving after 2 seconds
+                clearTimeout(avatarTimeout);
+                avatarTimeout = setTimeout(() => {
+                    avatar.classList.remove('waving');
+                    isWaving = false;
+                }, 2000);
+            }, 500);
+        }
+    });
+
+    // Initialize avatar position after page load
+    setTimeout(() => {
+        // Get initial section
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            
+            if (pageYOffset >= sectionTop - 200) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        // Set initial position
+        updateAvatarPosition();
+    }, 500);
 });
